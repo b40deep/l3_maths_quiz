@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my first pwa</title>
+  </head>
+  <body>
+    <div>
+      <p>my first progressive web app is a maths game!</p>
+      <!-- <button type="button" onclick="testJS()" >test the javascript</button> -->
+      <!-- <button type="button" id="test-js-button">test the javascript</button> -->
+      <div>
+        <input type="text" name="input-name" id="input-name" />
+        <button type="button" onclick="saveName()">save the name</button>
+      </div>
+
+      <div>
+        <video
+          style="height: 300px; width: auto; background-color: aqua"
+        ></video>
+        <canvas
+          style="height: 300px; width: 400px; background-color: cornflowerblue"
+        ></canvas>
+        <br />
+        <button type="button" id="take-picture-button">
+          take your pic with the camera!
+        </button>
+      </div>
+
+      <div>
+        <a href="/game.html"
+          ><button type="button">Play the maths game!</button></a
+        >
+      </div>
+      <div>HIGH SCORE: <span id="highscore"> 0 </span></div>
+    </div>
+  </body>
+</html>
+<script src="/sw.js"></script>
+<script src="/index.js"></script>
+<script src="/camera.js"></script>
