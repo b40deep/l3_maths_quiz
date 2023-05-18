@@ -14,10 +14,25 @@ let responseText = document.getElementById("response");
 let highscoreText = document.getElementById("highscore");
 let highScore = 0;
 let attempts = 10;
+//use levels to keep track of the game and set timers where necessary
+let gameLevel = 0;
 
-levelOne();
-//populate the spans with the randomly generated numbers and operands
+//start the game
+startGame();
+//use the game level to start the game with the appropriate difficulty
 function startGame() {
+  gameLevel = localStorage.getItem("gameLevel") || gameLevel;
+  //kick off timers depending on the game level
+  if (gameLevel == 1) {
+    const l1Timeout = setTimeout(endGame, 5000);
+  }
+  if (gameLevel == 2) {
+    const l2Timeout = setTimeout(endGame, 3000);
+  }
+}
+
+//populate the spans with the randomly generated numbers and operands
+function loadNextQuestion() {
   //if attempts are done, end the game and disable everything.
   attempts -= 1;
   attempts == 0 ? endGame() : attempts;
@@ -60,19 +75,21 @@ function startGame() {
 function checkAnswer(optionNumber) {
   //   alert(optionNumber);
   if (optionNumber == 2) {
+    playPassSound();
     highScore += 1;
     responseText.innerHTML = "Correct!";
     highscoreText.innerHTML = highScore;
   } else {
+    playFailSound();
     responseText.innerHTML = "Sorry!";
   }
   // alert(attempts);
-  startGame();
+  loadNextQuestion();
 }
 
 //capture the necessary buttons
 // const startGameBtn = document.querySelector("#start-game");
-// startGameBtn.addEventListener("click", startGame);
+// startGameBtn.addEventListener("click", loadNextQuestion);
 const option1Btn = document.querySelector("#option1");
 option1Btn.addEventListener("click", () => {
   checkAnswer(1);
@@ -91,7 +108,8 @@ function endGame() {
   option1.disabled = true;
   option2.disabled = true;
   option3.disabled = true;
-  responseText.innerHTML = "Your 10 attempts are done. Thanks for playing!";
+  responseText.innerHTML =
+    "Your 10 attempts or time are done. Thanks for playing!";
 }
 
 //set the timer for the game
