@@ -105,11 +105,25 @@ option3Btn.addEventListener("click", () => {
 
 // end the game by disabling the answer buttons and setting a message to the response
 function endGame() {
-  option1.disabled = true;
-  option2.disabled = true;
-  option3.disabled = true;
-  responseText.innerHTML =
-    "Your 10 attempts or time are done. Thanks for playing!";
+  //if highscore is equal to attempts, the player passed all the questions.
+  //therefore, we should graduate them to the next level.
+  if (highScore == 10) {
+    gameLevel += 1;
+    localStorage.setItem("gameLevel", gameLevel);
+    //reset the attempts
+    attempts = 10;
+    //restart the game with the new Level
+    startGame();
+  }
+
+  //if not, then they failed some, so the game ends there
+  else {
+    option1.disabled = true;
+    option2.disabled = true;
+    option3.disabled = true;
+    responseText.innerHTML =
+      "Your 10 attempts or time are done. Thanks for playing!";
+  }
 }
 
 //set the timer for the game

@@ -9,7 +9,7 @@ The app should run a game where the user has to answer a series of simple random
 
 # Tasks remaining:
 
-- set up the 3 levels with appropriate time limits; starting with zero then one then two.
+- [done] set up the 3 levels with appropriate time limits; starting with zero then one then two.
 - add styling
 - add images/graphics
 - [done] add sounds
