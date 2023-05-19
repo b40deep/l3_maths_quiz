@@ -2,6 +2,25 @@ function testJS() {
   alert("javascript successfully connected!");
 }
 
+//install the service worker
+//register the service worker onto the website
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("/sw.js").then(
+      function (registration) {
+        console.log(
+          "Service worker registered successfully:",
+          registration.scope
+        );
+      },
+      function (err) {
+        console.log("Service worker registration failed:", err);
+      }
+    );
+  });
+}
+
+//variables
 let username = "";
 let highScore = 0;
 const inputElement = document.getElementById("input_name");

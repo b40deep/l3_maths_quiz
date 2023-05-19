@@ -1,20 +1,3 @@
-//register the service worker onto the website
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
-    navigator.serviceWorker.register("/sw.js").then(
-      function (registration) {
-        console.log(
-          "Service worker registered successfully:",
-          registration.scope
-        );
-      },
-      function (err) {
-        console.log("Service worker registration failed:", err);
-      }
-    );
-  });
-}
-
 //installing and activating the sw
 self.addEventListener("install", function (event) {
   console.log("Service worker installed successfully");
@@ -52,7 +35,9 @@ self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open("static-v1").then(function (cache) {
       return cache.addAll([
+        "./",
         "/index.html",
+        "/images/logo128.png",
         // "/styles.css",
         // "/script.js",
         // "/images/logo.png",
