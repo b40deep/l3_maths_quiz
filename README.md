@@ -14,5 +14,5 @@ The app should run a game where the user has to answer a series of simple random
 - add images/graphics
 - [done] add sounds
 - finalise PWA for installing
-- text validation on name input
+- [done] text validation on name input [used-backend-validation]
 - save image to storage

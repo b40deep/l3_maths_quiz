@@ -24,6 +24,8 @@ function takePicture() {
   //store the image into a variable so we can use it later
   const imageData = canvas.toDataURL("image/png");
   // send the imageData to the server or do something else with it
+  // alert(imageData);
+  document.getElementById("saved-image").src = imageData;
 }
 
 // add a click event listener to the "Take Picture" button
