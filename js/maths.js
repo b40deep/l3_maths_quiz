@@ -21,7 +21,7 @@ let gameLevel = 0;
 startGame();
 //use the game level to start the game with the appropriate difficulty
 function startGame() {
-  gameLevel = localStorage.getItem("gameLevel") || gameLevel;
+  gameLevel = localStorage.getItem("gamelevel") || gameLevel;
   //kick off timers depending on the game level
   if (gameLevel == 1) {
     const l1Timeout = setTimeout(endGame, 5000);
@@ -109,7 +109,7 @@ function endGame() {
   //therefore, we should graduate them to the next level.
   if (highScore == 10) {
     gameLevel += 1;
-    localStorage.setItem("gameLevel", gameLevel);
+    localStorage.setItem("gamelevel", gameLevel);
     //reset the attempts
     attempts = 10;
     //restart the game with the new Level

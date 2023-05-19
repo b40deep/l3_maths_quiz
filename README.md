@@ -10,7 +10,9 @@ The app should run a game where the user has to answer a series of simple random
 # Tasks remaining:
 
 - [done] set up the 3 levels with appropriate time limits; starting with zero then one then two.
-- add styling
+- [done] add styling
 - add images/graphics
 - [done] add sounds
 - finalise PWA for installing
+- text validation on name input
+- save image to storage

@@ -15,17 +15,24 @@
       <!-- <button type="button" onclick="testJS()" >test the javascript</button> -->
       <!-- <button type="button" id="test-js-button">test the javascript</button> -->
       <div class="row">
-        <div class="col">
+        <h3><span id="highscore"> </span></h3>
+      </div>
+      <form class="row row-cols-lg-auto g-3 align-items-center">
+        <div class="col-6">
           <input
-            placeholder="What's your name?"
+            placeholder="What's your name, friend?"
             id="first_name"
             type="text"
-            class=""
-          /><a class="" onclick="saveName()"> save </a>
+            class="form-control"
+          />
         </div>
-      </div>
-
-      <div class="row">
+        <div class="col">
+          <button class="btn btn-outline-primary col-6" onclick="saveName()">
+            save
+          </button>
+        </div>
+      </form>
+      <div class="row my-2">
         <div class="col">
           <video
             style="height: 300px; width: auto; background-color: aqua"
@@ -40,18 +47,25 @@
             "
           ></canvas>
           <br />
-          <button type="button" id="take-picture-button">
+          <button
+            type="button"
+            id="take-picture-button"
+            class="btn btn-outline-primary"
+          >
             take your pic with the camera!
           </button>
         </div>
       </div>
 
       <div class="row">
-        <a href="/game.html"
-          ><button type="button">Play the maths game!</button></a
-        >
+        <div class="col">
+          <a href="/game.html"
+            ><button class="btn btn-success btn-large col-12">
+              Play the maths game!
+            </button></a
+          >
+        </div>
       </div>
-      <div>HIGH SCORE: <span id="highscore"> 0 </span></div>
     </div>
   </body>
 </html>

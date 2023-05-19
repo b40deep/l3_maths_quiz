@@ -3,6 +3,7 @@ function testJS() {
 }
 
 let username = "";
+let highScore = 0;
 const inputElement = document.getElementById("input-name");
 const highscoreSpan = document.querySelector("#highscore");
 
@@ -28,7 +29,9 @@ function saveName() {
 // testJSbtn.addEventListener("click", testJS);
 
 //check if highscore is available and display it
+username = localStorage.getItem("username");
+highScore = localStorage.getItem("highscore");
 highscoreSpan.textContent =
-  localStorage.getItem("username") +
-    " got " +
-    localStorage.getItem("highscore") || "failed to load highscore";
+  (username == undefined ? "Friend" : username) +
+  ", your high score is " +
+  (highScore == null ? "yet to be set" : highScore);
