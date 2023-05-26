@@ -16,4 +16,4 @@ The app should run a game where the user has to answer a series of simple random
 - [done] finalise PWA for installing
 - [done] text validation on name input [used-backend-validation]
 - [done] save image to storage
-- limit the maths results to 12
+- [done] limit the maths results to 12

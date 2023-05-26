@@ -3,6 +3,7 @@ let num1span = document.getElementById("num1");
 let signspan = document.getElementById("sign");
 let num2span = document.getElementById("num2");
 const operands = ["+", "-", "*", "/"];
+let numswap = 0;
 let num1 = 0;
 let num2 = 0;
 let sign = 0;
@@ -43,12 +44,22 @@ function loadNextQuestion() {
   //generate random numbers and operands
   num1 = Math.floor(Math.random() * 5);
   num2 = Math.floor(Math.random() * 4);
-  sign = Math.floor(Math.random() * 4);
-
   //set the numbers to make sure the first is greater than the second (so that we don't end up with negative numbers)
-  num1span.textContent = num1 > num2 ? num1 : num2;
+  if (num1 < num2) {
+    numswap = num1;
+    num1 = num2;
+    num2 = numswap;
+  }
+  //set the sign depending on if the numbers generated are divisible
+  sign =
+    num1 % num2 == 0
+      ? Math.floor(Math.random() * 4)
+      : Math.floor(Math.random() * 3);
+
+  //set the options to the buttons
+  num1span.textContent = num1;
   signspan.textContent = operands[sign];
-  num2span.textContent = num1 < num2 ? num1 : num2;
+  num2span.textContent = num2;
 
   //do the arithmetic and generate the options
   switch (sign) {
@@ -78,7 +89,9 @@ function loadNextQuestion() {
   answerPool[0] = rightAnswer;
   answerPool[1] = Math.floor(Math.random() * 13);
   answerPool[2] = Math.floor(Math.random() * 13);
-  console.log(`answerpool options ${answerPool.toString()} `);
+  console.log(
+    `answerpool options ${answerPool.toString()} ans ${answerPool[0]}`
+  );
   //set the buttons to the answer options randomly
   answerPoolSeed = Math.floor(Math.random() * 3);
   option1.innerHTML = answerPool[answerPoolSeed];
@@ -109,9 +122,11 @@ function checkAnswer(optionNumber) {
     highScore += 1;
     responseText.innerHTML = "Correct!";
     highscoreText.innerHTML = highScore;
+    // console.log(`pass ${optionNumber} ${answerPool[0]}`);
   } else {
     playFailSound();
     responseText.innerHTML = "Sorry!";
+    // console.log(`fail ${optionNumber} ${answerPool[0]}`);
   }
   // alert(attempts);
   loadNextQuestion();
@@ -130,7 +145,7 @@ option2Btn.addEventListener("click", () => {
 });
 const option3Btn = document.querySelector("#option3");
 option3Btn.addEventListener("click", () => {
-  checkAnswer(option2Btn.innerHTML);
+  checkAnswer(option3Btn.innerHTML);
 });
 
 // end the game by disabling the answer buttons and setting a message to the response
