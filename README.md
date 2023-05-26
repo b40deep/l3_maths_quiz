@@ -13,6 +13,7 @@ The app should run a game where the user has to answer a series of simple random
 - [done] add styling
 - add images/graphics
 - [done] add sounds
-- finalise PWA for installing
+- [done] finalise PWA for installing
 - [done] text validation on name input [used-backend-validation]
 - [done] save image to storage
+- limit the maths results to 12

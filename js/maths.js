@@ -14,6 +14,8 @@ let responseText = document.getElementById("response");
 let highscoreText = document.getElementById("highscore");
 let highScore = 0;
 let attempts = 10;
+let answerPool = [];
+let answerPoolSeed = 0;
 //use levels to keep track of the game and set timers where necessary
 let gameLevel = 0;
 
@@ -39,8 +41,8 @@ function loadNextQuestion() {
   localStorage.setItem("highscore", highScore);
 
   //generate random numbers and operands
-  num1 = Math.floor(Math.random() * 13);
-  num2 = Math.floor(Math.random() * 13);
+  num1 = Math.floor(Math.random() * 5);
+  num2 = Math.floor(Math.random() * 4);
   sign = Math.floor(Math.random() * 4);
 
   //set the numbers to make sure the first is greater than the second (so that we don't end up with negative numbers)
@@ -65,16 +67,44 @@ function loadNextQuestion() {
     default:
       break;
   }
-  option1.innerHTML = rightAnswer + 2;
-  option2.innerHTML = rightAnswer;
-  option3.innerHTML = rightAnswer - 1;
+
+  //limit the decimals on the answer
+  rightAnswer =
+    rightAnswer - Math.floor(rightAnswer) == 0
+      ? rightAnswer
+      : rightAnswer.toFixed(1);
+
+  //create an answer pool
+  answerPool[0] = rightAnswer;
+  answerPool[1] = Math.floor(Math.random() * 13);
+  answerPool[2] = Math.floor(Math.random() * 13);
+  console.log(`answerpool options ${answerPool.toString()} `);
+  //set the buttons to the answer options randomly
+  answerPoolSeed = Math.floor(Math.random() * 3);
+  option1.innerHTML = answerPool[answerPoolSeed];
+  // console.log(
+  //   `s ${answerPoolSeed + 1 >= 3 ? answerPoolSeed - 2 : answerPoolSeed + 1}`
+  // );
+  // console.log(
+  //   `t ${answerPoolSeed + 2 >= 3 ? answerPoolSeed - 1 : answerPoolSeed + 2}`
+  // );
+  option2.innerHTML =
+    answerPool[
+      answerPoolSeed + 1 >= 3 ? answerPoolSeed - 2 : answerPoolSeed + 1
+    ];
+
+  option3.innerHTML =
+    answerPool[
+      answerPoolSeed + 2 >= 3 ? answerPoolSeed - 1 : answerPoolSeed + 2
+    ];
+
   //   alert(sign);
 }
 
 //check if selected option is correct
 function checkAnswer(optionNumber) {
   //   alert(optionNumber);
-  if (optionNumber == 2) {
+  if (optionNumber == answerPool[0]) {
     playPassSound();
     highScore += 1;
     responseText.innerHTML = "Correct!";
@@ -92,15 +122,15 @@ function checkAnswer(optionNumber) {
 // startGameBtn.addEventListener("click", loadNextQuestion);
 const option1Btn = document.querySelector("#option1");
 option1Btn.addEventListener("click", () => {
-  checkAnswer(1);
+  checkAnswer(option1Btn.innerHTML);
 });
 const option2Btn = document.querySelector("#option2");
 option2Btn.addEventListener("click", () => {
-  checkAnswer(2);
+  checkAnswer(option2Btn.innerHTML);
 });
 const option3Btn = document.querySelector("#option3");
 option3Btn.addEventListener("click", () => {
-  checkAnswer(3);
+  checkAnswer(option2Btn.innerHTML);
 });
 
 // end the game by disabling the answer buttons and setting a message to the response
