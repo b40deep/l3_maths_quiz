@@ -29,6 +29,8 @@ function takePicture() {
   document.getElementById("saved-image").src = imageData;
   //save the image to localStorage
   localStorage.setItem("image", imageData);
+  //hide the video now that we have an image
+  video.classList.add("d-none");
 }
 
 // add a click event listener to the "Take Picture" button
@@ -40,7 +42,7 @@ function loadDefaultImage() {
   defaultImage = localStorage.getItem("image");
   if (defaultImage != null) {
     document.getElementById("saved-image").src = defaultImage;
-    video.classList.toggle("d-none");
+    video.classList.add("d-none");
   }
 }
 loadDefaultImage();

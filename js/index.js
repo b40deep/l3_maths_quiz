@@ -57,4 +57,5 @@ function loadDefaults() {
     (username == undefined ? "Friend" : username) +
     ", your high score is " +
     (highScore == null ? "yet to be set" : highScore);
+  //image is loaded by camera.js so don't load if from here
 }
