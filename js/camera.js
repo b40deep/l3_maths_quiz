@@ -1,6 +1,7 @@
 const video = document.querySelector("video");
 const canvas = document.querySelector("canvas");
 const context = canvas.getContext("2d");
+let defaultImage = null;
 
 // find any video camera on the device we're using
 navigator.mediaDevices
@@ -26,8 +27,20 @@ function takePicture() {
   // send the imageData to the server or do something else with it
   // alert(imageData);
   document.getElementById("saved-image").src = imageData;
+  //save the image to localStorage
+  localStorage.setItem("image", imageData);
 }
 
 // add a click event listener to the "Take Picture" button
 const takePictureButton = document.querySelector("#take-picture-button");
 takePictureButton.addEventListener("click", takePicture);
+
+//load the default image on subsequent loads of the homepage
+function loadDefaultImage() {
+  defaultImage = localStorage.getItem("image");
+  if (defaultImage != null) {
+    document.getElementById("saved-image").src = defaultImage;
+    video.classList.toggle("d-none");
+  }
+}
+loadDefaultImage();

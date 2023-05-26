@@ -2,12 +2,16 @@ function testJS() {
   alert("javascript successfully connected!");
 }
 
+//create a service worker hook
+let workerBee = null;
+
 //install the service worker
 //register the service worker onto the website
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker.register("/sw.js").then(
       function (registration) {
+        workerBee = navigator.serviceWorker.controller;
         console.log(
           "Service worker registered successfully:",
           registration.scope
@@ -31,23 +35,19 @@ loadDefaults();
 function saveName() {
   username = inputElement.value;
   // console.log("input-username:", inputValue);
-  // alert(`javascript said your username is ${username}!`);
   if (username !== undefined && username !== null && username.length > 0) {
     localStorage.setItem("username", username);
     // alert(`javascript said your username is ${username.length}!`);
     loadDefaults();
+
+    // send data to the service worker if one exists
+    // try {
+    //   workerBee.postMessage({ username: username });
+    // } catch (error) {
+    //   console.log("service worker not seen");
+    // }
   }
-
-  // send data to the service worker if one exists
-  // if ("serviceWorker" in navigator) {
-  //   navigator.serviceWorker.controller.postMessage(
-  //     "Hello from the web page!" + inputValue
-  //   );
-  // }
 }
-
-// const testJSbtn = document.querySelector("#test-js-button");
-// testJSbtn.addEventListener("click", testJS);
 
 function loadDefaults() {
   //check if highscore is available and display it

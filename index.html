@@ -52,12 +52,15 @@
             "
             class="d-none"
           ></canvas>
-          <img src="" id="saved-image" alt="" />
-          <br />
+          <img src="" id="saved-image" alt="" class="img-fluid" />
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col">
           <button
             type="button"
             id="take-picture-button"
-            class="btn btn-outline-primary"
+            class="btn btn-outline-primary mt-3"
           >
             take your pic with the camera!
           </button>
@@ -76,7 +79,8 @@
     </div>
   </body>
 </html>
-<script src="/js/camera.js"></script>
 <script src="/sw.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/index.js"></script>
+<!-- let camera load last so it can override the video, canvas, and img if necessary -->
+<script src="/js/camera.js"></script>

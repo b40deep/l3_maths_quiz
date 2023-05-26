@@ -27,7 +27,12 @@ self.addEventListener("fetch", function (event) {
 
 //receive messages from the website
 self.addEventListener("message", function (event) {
-  console.log("Received message from web page:", event.data);
+  data = event.data;
+  // console.log("Received message from web page:", data);
+  console.log("data:", data["username"]);
+  // caches.open("static-v1").then(function (cache) {
+  //   return cache.put("username", data["username"]);
+  // });
 });
 
 //cache the static assets

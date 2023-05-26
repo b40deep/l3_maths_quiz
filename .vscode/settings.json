@@ -4,8 +4,10 @@
   "liveServer.settings.CustomBrowser": "chrome",
   "liveServer.settings.https": {
     "enable": true,
-    "cert": "C:/Users/tusomesa/Desktop/pwa/.vscode/https/certs/home-com.crt",
-    "key": "C:/Users/tusomesa/Desktop/pwa/.vscode/https/private/home-com-privateKey.key",
-    "passphrase": ""
+    // "cert": "C:/Users/tusomesa/Desktop/pwa/.vscode/https/certs/home-com.crt",
+    "cert": "C:/Users/tusomesa/Documents/https_certificates/cert.pem",
+    "key": "C:/Users/tusomesa/Documents/https_certificates/key.pem",
+    // "key": "C:/Users/tusomesa/Desktop/pwa/.vscode/https/private/home-com-privateKey.key",
+    "passphrase": "passphrase"
   }
 }
