@@ -15,4 +15,4 @@ The app should run a game where the user has to answer a series of simple random
 - [done] add sounds
 - finalise PWA for installing
 - [done] text validation on name input [used-backend-validation]
-- save image to storage
+- [done] save image to storage

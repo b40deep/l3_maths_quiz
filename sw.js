@@ -42,10 +42,19 @@ self.addEventListener("install", function (event) {
       return cache.addAll([
         "./",
         "/index.html",
+        "/game.html",
         "/images/logo128.png",
-        // "/styles.css",
-        // "/script.js",
-        // "/images/logo.png",
+        "/images/logo256.png",
+        "/images/logo512.png",
+        "/images/logo96.png",
+        "/css/bootstrap.min.css",
+        "/js/bootstrap.min.js",
+        "/js/camera.js",
+        "/js/index.js",
+        "/js/maths.js",
+        "/js/sound.js",
+        "/sound/fail.mp3",
+        "/sound/pass.mp3",
       ]);
     })
   );
