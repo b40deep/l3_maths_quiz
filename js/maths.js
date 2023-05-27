@@ -86,6 +86,7 @@ function loadNextQuestion() {
   }
 
   //limit the decimals on the answer
+  //not needed now that I have adjusted the random number generator not to give me decimal answers
   rightAnswer =
     rightAnswer - Math.floor(rightAnswer) == 0
       ? rightAnswer
