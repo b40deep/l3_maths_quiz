@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "localComic";
+  src: url("/font/comic.ttf") format("truetype"), /* Safari, Android, iOS */;
+}
+
 body {
-  --bs-body-font-family: "Comic Sans MS";
+  --bs-body-font-family: localComic, "Comic Sans MS", sans-serif;
 }
