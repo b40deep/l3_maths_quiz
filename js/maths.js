@@ -14,23 +14,30 @@ let rightAnswer = 0;
 let responseText = document.getElementById("response");
 let highscoreText = document.getElementById("highscore");
 let highScore = 0;
-let attempts = 10;
+let attempts = 11;
 let answerPool = [];
 let answerPoolSeed = 0;
 //use levels to keep track of the game and set timers where necessary
 let gameLevel = 0;
 
-//start the game
-startGame();
+//load the level
+loadLevel();
+//load a new question to start game
+loadNextQuestion();
+
 //use the game level to start the game with the appropriate difficulty
-function startGame() {
+function loadLevel() {
   gameLevel = localStorage.getItem("gamelevel") || gameLevel;
   //kick off timers depending on the game level
   if (gameLevel == 1) {
-    const l1Timeout = setTimeout(endGame, 5000);
+    let l1Timeout = setTimeout(() => {
+      endGame("l1time");
+    }, 5000);
   }
   if (gameLevel == 2) {
-    const l2Timeout = setTimeout(endGame, 3000);
+    let l2Timeout = setTimeout(() => {
+      endGame("l2time");
+    }, 3000);
   }
 }
 
@@ -38,8 +45,7 @@ function startGame() {
 function loadNextQuestion() {
   //if attempts are done, end the game and disable everything.
   attempts -= 1;
-  attempts == 0 ? endGame() : attempts;
-  localStorage.setItem("highscore", highScore);
+  attempts == 0 ? endGame("tries") : attempts;
 
   //generate random numbers and operands
   num1 = Math.floor(Math.random() * 5);
@@ -95,23 +101,14 @@ function loadNextQuestion() {
   //set the buttons to the answer options randomly
   answerPoolSeed = Math.floor(Math.random() * 3);
   option1.innerHTML = answerPool[answerPoolSeed];
-  // console.log(
-  //   `s ${answerPoolSeed + 1 >= 3 ? answerPoolSeed - 2 : answerPoolSeed + 1}`
-  // );
-  // console.log(
-  //   `t ${answerPoolSeed + 2 >= 3 ? answerPoolSeed - 1 : answerPoolSeed + 2}`
-  // );
   option2.innerHTML =
     answerPool[
       answerPoolSeed + 1 >= 3 ? answerPoolSeed - 2 : answerPoolSeed + 1
     ];
-
   option3.innerHTML =
     answerPool[
       answerPoolSeed + 2 >= 3 ? answerPoolSeed - 1 : answerPoolSeed + 2
     ];
-
-  //   alert(sign);
 }
 
 //check if selected option is correct
@@ -123,6 +120,8 @@ function checkAnswer(optionNumber) {
     responseText.innerHTML = "Correct!";
     highscoreText.innerHTML = highScore;
     // console.log(`pass ${optionNumber} ${answerPool[0]}`);
+    //update the high score
+    localStorage.setItem("highscore", highScore);
   } else {
     playFailSound();
     responseText.innerHTML = "Sorry!";
@@ -133,8 +132,8 @@ function checkAnswer(optionNumber) {
 }
 
 //capture the necessary buttons
-// const startGameBtn = document.querySelector("#start-game");
-// startGameBtn.addEventListener("click", loadNextQuestion);
+// const loadLevelBtn = document.querySelector("#start-game");
+// loadLevelBtn.addEventListener("click", loadNextQuestion);
 const option1Btn = document.querySelector("#option1");
 option1Btn.addEventListener("click", () => {
   checkAnswer(option1Btn.innerHTML);
@@ -149,16 +148,22 @@ option3Btn.addEventListener("click", () => {
 });
 
 // end the game by disabling the answer buttons and setting a message to the response
-function endGame() {
+function endGame(mode) {
   //if highscore is equal to attempts, the player passed all the questions.
   //therefore, we should graduate them to the next level.
   if (highScore == 10) {
     gameLevel += 1;
     localStorage.setItem("gamelevel", gameLevel);
     //reset the attempts
-    attempts = 10;
+    attempts += 11;
+    //reset the highscore
+    highScore = 0;
+    localStorage.setItem("highscore", highScore);
+
     //restart the game with the new Level
-    startGame();
+    loadLevel();
+    // //load a new game question to kick off the new game
+    // loadNextQuestion();
   }
 
   //if not, then they failed some, so the game ends there
@@ -166,12 +171,19 @@ function endGame() {
     option1.disabled = true;
     option2.disabled = true;
     option3.disabled = true;
-    responseText.innerHTML =
-      "Your 10 attempts or time are done. Thanks for playing!";
+    if (mode == "tries") {
+      responseText.innerHTML = "Your 10 attempts are done. Thanks for playing!";
+    } else if (mode == "l1time") {
+      responseText.innerHTML =
+        "Your time is up. Thanks for playing to Level 1!";
+    } else if (mode == "l2time") {
+      responseText.innerHTML =
+        "Your time is up. Thanks for playing to Level 2!";
+    }
   }
 }
 
 //set the timer for the game
 function levelOne() {
-  const myTimeout = setTimeout(endGame, 5000);
+  const myTimeout = setTimeout(endGame("l1time"), 5000);
 }
