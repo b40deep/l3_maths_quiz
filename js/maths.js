@@ -101,12 +101,12 @@ function loadNextQuestion() {
   );
   //set the buttons to the answer options randomly
   answerPoolSeed = Math.floor(Math.random() * 3);
-  option1.innerHTML = answerPool[answerPoolSeed];
-  option2.innerHTML =
+  option1.alt = answerPool[answerPoolSeed];
+  option2.alt =
     answerPool[
       answerPoolSeed + 1 >= 3 ? answerPoolSeed - 2 : answerPoolSeed + 1
     ];
-  option3.innerHTML =
+  option3.alt =
     answerPool[
       answerPoolSeed + 2 >= 3 ? answerPoolSeed - 1 : answerPoolSeed + 2
     ];
@@ -137,15 +137,15 @@ function checkAnswer(optionNumber) {
 // loadLevelBtn.addEventListener("click", loadNextQuestion);
 const option1Btn = document.querySelector("#option1");
 option1Btn.addEventListener("click", () => {
-  checkAnswer(option1Btn.innerHTML);
+  checkAnswer(option1Btn.alt);
 });
 const option2Btn = document.querySelector("#option2");
 option2Btn.addEventListener("click", () => {
-  checkAnswer(option2Btn.innerHTML);
+  checkAnswer(option2Btn.alt);
 });
 const option3Btn = document.querySelector("#option3");
 option3Btn.addEventListener("click", () => {
-  checkAnswer(option3Btn.innerHTML);
+  checkAnswer(option3Btn.alt);
 });
 
 // end the game by disabling the answer buttons and setting a message to the response
