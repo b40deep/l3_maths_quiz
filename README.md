@@ -11,9 +11,12 @@ The app should run a game where the user has to answer a series of simple random
 
 - [done] set up the 3 levels with appropriate time limits; starting with zero then one then two.
 - [done] add styling
-- add images/graphics
+- [done] add images/graphics
 - [done] add sounds
 - [done] finalise PWA for installing
 - [done] text validation on name input [used-backend-validation]
 - [done] save image to storage
 - [done] limit the maths results to 12
+- add animations
+- add background music
+- add timer ticking away as you play
