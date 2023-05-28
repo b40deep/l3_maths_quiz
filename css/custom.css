@@ -6,3 +6,11 @@
 body {
   --bs-body-font-family: localComic, "Comic Sans MS", sans-serif;
 }
+
+.game-what-is {
+  font-size: 5em;
+}
+.game-color {
+  color: #00a6ed;
+  background-color: #b3fa31;
+}

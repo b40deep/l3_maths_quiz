@@ -2,7 +2,7 @@
 let num1span = document.getElementById("num1");
 let signspan = document.getElementById("sign");
 let num2span = document.getElementById("num2");
-const operands = ["+", "-", "*", "/"];
+const operands = ["+", "-", "x", "d"];
 let numswap = 0;
 let num1 = 0;
 let num2 = 0;
@@ -19,6 +19,19 @@ let answerPool = [];
 let answerPoolSeed = 0;
 //use levels to keep track of the game and set timers where necessary
 let gameLevel = 0;
+//keep track of the progress emojis
+let p1 = document.getElementById("p1");
+let p2 = document.getElementById("p2");
+let p3 = document.getElementById("p3");
+let p4 = document.getElementById("p4");
+let p5 = document.getElementById("p5");
+let p6 = document.getElementById("p6");
+let p7 = document.getElementById("p7");
+let p8 = document.getElementById("p8");
+let p9 = document.getElementById("p9");
+let p10 = document.getElementById("p10");
+let progressEmojis = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10];
+let progressNum = 0;
 
 //load the level
 loadLevel();
@@ -63,9 +76,13 @@ function loadNextQuestion() {
       : Math.floor(Math.random() * 3);
 
   //set the options to the buttons
-  num1span.textContent = num1;
-  signspan.textContent = operands[sign];
-  num2span.textContent = num2;
+  num1span.alt = num1;
+  signspan.alt = operands[sign];
+  num2span.alt = num2;
+  //set the images to correspond
+  setImg(num1span, num1);
+  setImg(signspan, operands[sign]);
+  setImg(num2span, num2);
 
   //do the arithmetic and generate the options
   switch (sign) {
@@ -110,6 +127,10 @@ function loadNextQuestion() {
     answerPool[
       answerPoolSeed + 2 >= 3 ? answerPoolSeed - 1 : answerPoolSeed + 2
     ];
+  //set the images for the answers to the buttons
+  setImg(option1, option1.alt);
+  setImg(option2, option2.alt);
+  setImg(option3, option3.alt);
 }
 
 //check if selected option is correct
@@ -123,10 +144,12 @@ function checkAnswer(optionNumber) {
     // console.log(`pass ${optionNumber} ${answerPool[0]}`);
     //update the high score
     localStorage.setItem("highscore", highScore);
+    updateProgress("pass");
   } else {
     playFailSound();
     responseText.innerHTML = "Sorry!";
     // console.log(`fail ${optionNumber} ${answerPool[0]}`);
+    updateProgress("fail");
   }
   // alert(attempts);
   loadNextQuestion();
@@ -184,7 +207,25 @@ function endGame(mode) {
   }
 }
 
-//set the timer for the game
-function levelOne() {
-  const myTimeout = setTimeout(endGame("l1time"), 5000);
+//set image of number to locations
+function setImg(location, number) {
+  location.src = "images/game/" + number + ".png";
+}
+
+//update the progress [randomly-generated] emojis
+function updateProgress(res) {
+  switch (res) {
+    case "pass":
+      progressEmojis[progressNum].src =
+        "images/game/pass" + Math.ceil(Math.random() * 4) + ".png";
+
+      break;
+
+    case "fail":
+      progressEmojis[progressNum].src =
+        "images/game/fail" + Math.ceil(Math.random() * 4) + ".png";
+
+      break;
+  }
+  progressNum += 1;
 }
