@@ -35,11 +35,15 @@ let progressNum = 0;
 
 //load the level
 loadLevel();
+loadHighscore();
+
 //load a new question to start game
 loadNextQuestion();
 
 //use the game level to start the game with the appropriate difficulty
 function loadLevel() {
+  //reset progress counter
+  progressNum = 0;
   gameLevel = localStorage.getItem("gamelevel") || gameLevel;
   //kick off timers depending on the game level
   if (gameLevel == 1) {
@@ -52,6 +56,13 @@ function loadLevel() {
       endGame("l2time");
     }, 3000);
   }
+}
+
+//load the highscore from localstorage
+function loadHighscore() {
+  highScore = parseInt(localStorage.getItem("highscore") || 0);
+  highscoreText.innerHTML = highScore;
+  // console.log("###################################################");
 }
 
 //populate the spans with the randomly generated numbers and operands
@@ -135,24 +146,27 @@ function loadNextQuestion() {
 
 //check if selected option is correct
 function checkAnswer(optionNumber) {
-  //   alert(optionNumber);
-  if (optionNumber == answerPool[0]) {
-    playPassSound();
-    highScore += 1;
-    responseText.innerHTML = "Correct!";
-    highscoreText.innerHTML = highScore;
-    // console.log(`pass ${optionNumber} ${answerPool[0]}`);
-    //update the high score
-    localStorage.setItem("highscore", highScore);
-    updateProgress("pass");
-  } else {
-    playFailSound();
-    responseText.innerHTML = "Sorry!";
-    // console.log(`fail ${optionNumber} ${answerPool[0]}`);
-    updateProgress("fail");
+  //first check if attempts are still available
+  if (attempts > 0) {
+    //   alert(optionNumber);
+    if (optionNumber == answerPool[0]) {
+      playPassSound();
+      highScore += 1;
+      responseText.innerHTML = "Correct!";
+      highscoreText.innerHTML = highScore;
+      // console.log(`pass ${optionNumber} ${answerPool[0]}`);
+      //update the high score
+      localStorage.setItem("highscore", highScore);
+      updateProgress("pass");
+    } else {
+      playFailSound();
+      responseText.innerHTML = "Sorry!";
+      // console.log(`fail ${optionNumber} ${answerPool[0]}`);
+      updateProgress("fail");
+    }
+    // alert(attempts);
+    loadNextQuestion();
   }
-  // alert(attempts);
-  loadNextQuestion();
 }
 
 //capture the necessary buttons
@@ -192,9 +206,10 @@ function endGame(mode) {
 
   //if not, then they failed some, so the game ends there
   else {
-    option1.disabled = true;
-    option2.disabled = true;
-    option3.disabled = true;
+    // option1.disabled = true;
+    // option2.disabled = true;
+    // option3.disabled = true;
+    // console.log("attempts left::::::::::::::::::" + attempts);
     if (mode == "tries") {
       responseText.innerHTML = "Your 10 attempts are done. Thanks for playing!";
     } else if (mode == "l1time") {
