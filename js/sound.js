@@ -1,26 +1,33 @@
-function sound(src) {
-  this.sound = document.createElement("audio");
-  this.sound.src = src;
-  this.sound.setAttribute("preload", "auto");
-  this.sound.setAttribute("controls", "none");
-  this.sound.style.display = "none";
-  document.body.appendChild(this.sound);
-  this.play = function () {
-    this.sound.play();
-  };
-  this.stop = function () {
-    this.sound.pause();
-  };
-}
-
-const passSound = new sound("/sound/pass.mp3");
-const failSound = new sound("/sound/fail.mp3");
+//switched from custom sound implementation to HTML Audio element
+const passSound = new Audio("/sound/pass.mp3");
+const failSound = new Audio("/sound/fail.mp3");
 
 function playPassSound() {
-  console.log("before play" + passSound.ended);
+  /*if any of the sounds were previously playing, 
+  stop them and reset them to the start
+  before playing a new sound*/
+  if (!passSound.ended) {
+    passSound.pause();
+    passSound.currentTime = 0;
+  }
+  if (!failSound.ended) {
+    failSound.pause();
+    failSound.currentTime = 0;
+  }
   passSound.play();
 }
 
 function playFailSound() {
+  /*if any of the sounds were previously playing, 
+  stop them and reset them to the start
+  before playing a new sound*/
+  if (!passSound.ended) {
+    passSound.pause();
+    passSound.currentTime = 0;
+  }
+  if (!failSound.ended) {
+    failSound.pause();
+    failSound.currentTime = 0;
+  }
   failSound.play();
 }
