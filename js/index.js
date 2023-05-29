@@ -34,18 +34,10 @@ loadDefaults();
 
 function saveName() {
   username = inputElement.value;
-  // console.log("input-username:", inputValue);
   if (username !== undefined && username !== null && username.length > 0) {
     localStorage.setItem("username", username);
-    // alert(`javascript said your username is ${username.length}!`);
     loadDefaults();
-
-    // send data to the service worker if one exists
-    // try {
-    //   workerBee.postMessage({ username: username });
-    // } catch (error) {
-    //   console.log("service worker not seen");
-    // }
+    // send data to the service worker if one exists and we need to
   }
 }
 

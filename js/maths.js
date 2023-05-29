@@ -62,7 +62,6 @@ function loadLevel() {
 function loadHighscore() {
   highScore = parseInt(localStorage.getItem("highscore") || 0);
   highscoreText.innerHTML = highScore;
-  // console.log("###################################################");
 }
 
 //populate the spans with the randomly generated numbers and operands
@@ -148,30 +147,24 @@ function loadNextQuestion() {
 function checkAnswer(optionNumber) {
   //first check if attempts are still available
   if (attempts > 0) {
-    //   alert(optionNumber);
     if (optionNumber == answerPool[0]) {
       playPassSound();
       highScore += 1;
       responseText.innerHTML = "Correct!";
       highscoreText.innerHTML = highScore;
-      // console.log(`pass ${optionNumber} ${answerPool[0]}`);
       //update the high score
       localStorage.setItem("highscore", highScore);
       updateProgress("pass");
     } else {
       playFailSound();
       responseText.innerHTML = "Sorry!";
-      // console.log(`fail ${optionNumber} ${answerPool[0]}`);
       updateProgress("fail");
     }
-    // alert(attempts);
     loadNextQuestion();
   }
 }
 
 //capture the necessary buttons
-// const loadLevelBtn = document.querySelector("#start-game");
-// loadLevelBtn.addEventListener("click", loadNextQuestion);
 const option1Btn = document.querySelector("#option1");
 option1Btn.addEventListener("click", () => {
   checkAnswer(option1Btn.alt);
@@ -200,16 +193,10 @@ function endGame(mode) {
 
     //restart the game with the new Level
     loadLevel();
-    // //load a new game question to kick off the new game
-    // loadNextQuestion();
   }
 
   //if not, then they failed some, so the game ends there
   else {
-    // option1.disabled = true;
-    // option2.disabled = true;
-    // option3.disabled = true;
-    // console.log("attempts left::::::::::::::::::" + attempts);
     if (mode == "tries") {
       responseText.innerHTML = "Your 10 attempts are done. Thanks for playing!";
     } else if (mode == "l1time") {

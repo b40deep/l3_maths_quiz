@@ -17,6 +17,7 @@ const passSound = new sound("/sound/pass.mp3");
 const failSound = new sound("/sound/fail.mp3");
 
 function playPassSound() {
+  console.log("before play" + passSound.ended);
   passSound.play();
 }
 
