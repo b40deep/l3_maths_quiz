@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Maths Game</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/custom.css" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="game-color">
+  <body class="game-color" onload="playBGSound()">
     <div class="container text-center">
       <div class="row">
         <div class="col">
@@ -47,8 +47,8 @@
         </div>
       </div>
 
-      <div class="row mt-5">
-        <div class="col">
+      <div class="row mt-5 justify-content-center">
+        <div class="col col-lg-10">
           <img
             src="/images/game/temp.png"
             alt="p1"
@@ -140,19 +140,35 @@
           />
         </div>
       </div>
-      <div class="row mt-5">
-        <div class="col">
-          <a href="/index.html"
-            ><button type="button" class="col-8 btn btn-lg btn-outline-primary">
-              Home
-            </button></a
+      <div class="row mt-5 justify-content-center">
+        <div class="col-lg-6 col col-md-10">
+          <button
+            type="button"
+            class="col-12 btn btn-lg btn-outline-primary"
+            onclick="goHome()"
           >
+            Home
+          </button>
+        </div>
+      </div>
+      <div class="row mt-5 justify-content-center">
+        <div class="col-lg-2 col-md-2 align-middle">
+          <img
+            src="images/game/bgSoundfalse.png"
+            alt="false"
+            class="img-fluid align-middle"
+            id="bg-sound-toggle"
+            onclick="toggleMute()"
+            type="button"
+          />
         </div>
       </div>
     </div>
+    <audio id="bg-sound"></audio>
   </body>
 </html>
 
-<script src="/js/maths.js"></script>
-<script src="/js/sound.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<!-- load sound before maths since maths makes some calls to sound -->
+<script src="js/sound.js"></script>
+<script src="js/maths.js"></script>
+<script src="js/bootstrap.min.js"></script>

@@ -51,3 +51,8 @@ function loadDefaults() {
     (highScore == null ? "yet to be set" : highScore);
   //image is loaded by camera.js so don't load if from here
 }
+
+//navigate to the game page
+function playGame() {
+  window.location.href = "game.html";
+}

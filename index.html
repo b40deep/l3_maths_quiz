@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>my first pwa</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/custom.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/custom.css" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- adding the manifest & theme color for the PWA -->
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/images/logo128.jpg" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="images/logo128.jpg" />
     <meta name="theme-color" content="#ffffff" />
   </head>
   <body class="game-color">
@@ -73,18 +73,18 @@
 
       <div class="row justify-content-center">
         <div class="col col-8">
-          <a href="/game.html"
-            ><button class="btn btn-success btn-lg col-12">
-              Play the maths game!
-            </button></a
-          >
+          <!-- <a href="/game.html"> -->
+          <button class="btn btn-success btn-lg col-12" onclick="playGame()">
+            Play the maths game!
+          </button>
+          <!-- </a> -->
         </div>
       </div>
     </div>
   </body>
 </html>
-<script src="/sw.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="sw.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/index.js"></script>
 <!-- let camera load last so it can override the video, canvas, and img if necessary -->
-<script src="/js/camera.js"></script>
+<script src="js/camera.js"></script>

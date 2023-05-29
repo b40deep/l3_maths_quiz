@@ -231,3 +231,8 @@ function updateProgress(res) {
   }
   progressNum += 1;
 }
+
+//navigate to the home page
+function goHome() {
+  window.location.href = "index.html";
+}

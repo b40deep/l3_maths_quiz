@@ -18,5 +18,5 @@ The app should run a game where the user has to answer a series of simple random
 - [done] save image to storage
 - [done] limit the maths results to 12
 - add animations
-- add background music
+- [done] add background music
 - add timer ticking away as you play
