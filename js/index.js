@@ -53,6 +53,8 @@ function loadDefaults() {
 }
 
 //navigate to the game page
+const playGameBtn = document.getElementById("play-game");
+playGameBtn.addEventListener("click", playGame);
 function playGame() {
   window.location.href = "game.html";
 }

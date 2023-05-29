@@ -41,6 +41,7 @@ self.addEventListener("install", function (event) {
     caches.open("static-v1").then(function (cache) {
       return cache.addAll([
         "./",
+        "/manifest.json",
         "/index.html",
         "/game.html",
         "/images/logo128.png",
@@ -51,6 +52,7 @@ self.addEventListener("install", function (event) {
         "/images/game/+.png",
         "/images/game/d.png",
         "/images/game/x.png",
+        "/images/game/0.png",
         "/images/game/1.png",
         "/images/game/2.png",
         "/images/game/3.png",
@@ -63,7 +65,6 @@ self.addEventListener("install", function (event) {
         "/images/game/10.png",
         "/images/game/11.png",
         "/images/game/12.png",
-        "/images/game/bg.png",
         "/images/game/fail1.png",
         "/images/game/fail2.png",
         "/images/game/fail3.png",

@@ -233,6 +233,8 @@ function updateProgress(res) {
 }
 
 //navigate to the home page
+const homeBtn = document.getElementById("go-home");
+homeBtn.addEventListener("click", goHome);
 function goHome() {
   window.location.href = "index.html";
 }
