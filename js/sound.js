@@ -6,9 +6,6 @@ const bgSound = document.getElementById("bg-sound");
 //populate the bgSound properties
 bgSound.src = "sound/bg.mp3";
 bgSound.loop = true;
-// bgSound.autoplay = true;
-
-// bgSound.load();
 
 //add some bgSound helper variables
 let bgTime = localStorage.getItem("bgTime") || 0;
