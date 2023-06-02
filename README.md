@@ -20,3 +20,9 @@ The app should run a game where the user has to answer a series of simple random
 - add animations
 - [done] add background music
 - add timer ticking away as you play
+
+# Screenshots:
+
+![The PWA can be installed.](screenshots/install.png "Option to install the PWA")
+![The PWA has persistent name and high score.](screenshots/photo.png "Your name and high score persist")
+![The PWA has is hopefully pleasing to look at.](screenshots/gameplay.png "Some gameplay footage")
